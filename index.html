@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Recommender</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        input, select {
+            border: 1px solid #e2e8f0;
+            padding: 0.5rem;
+            border-radius: 0.375rem;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold mb-8 text-center text-blue-600">Brijesh's University Recommender System</h1>
+        
+        <!-- Main content container with grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            <!-- Left panel - Form -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Enter Your Details</h2>
+                <form id="recommendationForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">GPA (0.0 - 4.0)</label>
+                        <input type="number" id="gpa" step="0.1" min="0" max="4.0" 
+                               class="mt-1 block w-full"
+                               placeholder="Enter your GPA (e.g., 3.5)"
+                               required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">SAT Score (400 - 1600)</label>
+                        <input type="number" id="sat" min="400" max="1600" 
+                               class="mt-1 block w-full"
+                               placeholder="Enter your SAT score"
+                               required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Education Background</label>
+                        <select id="education" 
+                                class="mt-1 block w-full">
+                            <option value="High School">High School</option>
+                            <option value="Transfer Student">Transfer Student</option>
+                            <option value="International">International Student</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" 
+                            class="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
+                        Get Recommendations
+                    </button>
+                </form>
+                <div id="error" class="mt-6 hidden p-4 bg-red-50 text-red-500 rounded-md"></div>
+            </div>
+
+            <!-- Right panel - Results -->
+            <div class="bg-white rounded-lg shadow-md p-6 min-h-[400px]">
+                <h2 class="text-xl font-semibold mb-4 text-gray-800">Recommendations</h2>
+                <div id="loading" class="hidden">
+                    <div class="flex items-center justify-center h-32">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+                    </div>
+                </div>
+                
+                <div id="results" class="hidden">
+                    <div id="universitiesList" class="space-y-4 overflow-y-auto max-h-[600px]"></div>
+                </div>
+
+                <!-- Initial state message -->
+                <div id="initial-message" class="text-center text-gray-500 mt-12">
+                    Enter your details on the left to get university recommendations
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
